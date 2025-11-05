@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innov8-360 - Transformative Tech Solutions</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLMDJd7MvV3Xp/F5Jj5l8jV6d5tW/f5f5P/A8z1x8X9g/wB/" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Configure Tailwind to use Inter font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        :root {
+            --primary-blue: #1e40af; /* Deep Blue */
+            --light-blue: #3b82f6;
+            --secondary-bg: #e0f2fe; /* Lightest Blue for contrast */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light gray background */
+            scroll-behavior: smooth;
+        }
+        .text-primary-blue { color: var(--primary-blue); }
+        .bg-primary-blue { background-color: var(--primary-blue); }
+        .border-primary-blue { border-color: var(--primary-blue); }
+
+        /* Custom scrollbar for aesthetics */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-thumb { background: var(--light-blue); border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: #e0e7ff; }
+
+        .nav-link:hover {
+            color: var(--light-blue);
+            transition: color 0.3s;
+        }
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(30, 64, 175, 0.25); /* Blue shadow on hover */
+        }
+        /* Mobile adjustment for header font size */
+        @media (max-width: 640px) {
+            .hero-heading-mobile {
+                font-size: 2.5rem; /* Adjust heading size for smaller phones */
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#home" onclick="renderPage('home')" class="text-2xl font-extrabold text-primary-blue tracking-tight flex items-center">
+                <!-- LOGO PLACEHOLDER ADDED HERE -->
+                <img src="https://placehold.co/24x24/1e40af/ffffff?text=I" alt="Innov8-360 Logo" class="h-6 w-6 mr-2 rounded-full">
+                Innov8<span class="text-gray-900">-360</span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" onclick="renderPage('home')" class="nav-link font-medium text-gray-700">Home</a>
+                <a href="#about" onclick="renderPage('about')" class="nav-link font-medium text-gray-700">About Us</a>
+                <a href="#services" onclick="renderPage('services')" class="nav-link font-medium text-gray-700">Services</a>
+                <a href="#stacks" onclick="renderPage('stacks')" class="nav-link font-medium text-gray-700">Technology</a>
+                <a href="#team" onclick="renderPage('team')" class="nav-link font-medium text-gray-700">Our Professionals</a>
+                <a href="#contact" onclick="renderPage('contact')" class="px-4 py-2 bg-primary-blue text-white rounded-lg shadow-md hover:bg-light-blue transition duration-300">Contact Us</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-primary-blue hover:bg-gray-100 transition duration-150">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white shadow-xl py-2 border-t border-gray-200">
+            <a href="#home" onclick="renderPage('home'); toggleMobileMenu()" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 transition duration-150">Home</a>
+            <a href="#about" onclick="renderPage('about'); toggleMobileMenu()" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 transition duration-150">About Us</a>
+            <a href="#services" onclick="renderPage('services'); toggleMobileMenu()" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 transition duration-150">Services</a>
+            <a href="#stacks" onclick="renderPage('stacks'); toggleMobileMenu()" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 transition duration-150">Technology</a>
+            <a href="#team" onclick="renderPage('team'); toggleMobileMenu()" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 transition duration-150">Our Professionals</a>
+            <a href="#contact" onclick="renderPage('contact'); toggleMobileMenu()" class="block px-4 py-2 bg-primary-blue text-white text-center m-2 rounded-lg">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="content" class="flex-grow"></main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:flex md:justify-between md:items-center">
+            <div class="mb-4 md:mb-0 flex items-center">
+                <!-- LOGO PLACEHOLDER ADDED HERE -->
+                <img src="https://placehold.co/20x20/1e40af/ffffff?text=I" alt="Innov8-360 Logo" class="h-5 w-5 mr-2 rounded-full">
+                <h3 class="text-xl font-bold">Innov8-360</h3>
+                <p class="text-sm text-gray-400 ml-4 hidden sm:block">Transformative Solutions for a Digital Future.</p>
+            </div>
+            <div class="flex space-x-6 text-xl">
+                <a href="#" class="hover:text-light-blue transition duration-300"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="hover:text-light-blue transition duration-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-light-blue transition duration-300"><i class="fab fa-facebook"></i></a>
+            </div>
+        </div>
+        <div class="border-t border-gray-700 py-4">
+            <p class="text-center text-sm text-gray-400">&copy; 2024 Innov8-360. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Page Content Templates ---
+
+        // Helper function to generate a standard header for internal pages
+        const pageHeader = (title, subtitle) => `
+            <div class="bg-primary-blue bg-opacity-90 py-16 mb-8 shadow-xl">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-2">${title}</h1>
+                    <p class="text-lg sm:text-xl text-indigo-200">${subtitle}</p>
+                </div>
+            </div>
+        `;
+
+        const homeContent = () => `
+            <!-- Hero Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-16 sm:pb-24 text-center">
+                <h2 class="hero-heading-mobile text-4xl sm:text-6xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Innovating <span class="text-primary-blue">Tomorrow's</span> Digital Landscape
+                </h2>
+                <p class="mt-4 text-base sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    We deliver 360-degree, secure, and cutting-edge technology solutions—from strategic consultation to robust application development and enterprise cybersecurity.
+                </p>
+                <div class="mt-8 sm:mt-10 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <button onclick="renderPage('services')" class="px-6 sm:px-8 py-3 text-lg font-semibold bg-primary-blue text-white rounded-xl shadow-lg hover:bg-light-blue transition duration-300 transform hover:scale-[1.02]">
+                        Explore Services <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button onclick="renderPage('contact')" class="px-6 sm:px-8 py-3 text-lg font-semibold border-2 border-primary-blue text-primary-blue rounded-xl hover:bg-primary-blue hover:text-white transition duration-300 transform hover:scale-[1.02]">
+                        Get a Quote
+                    </button>
+                </div>
+            </section>
+
+            <!-- Key Offerings (Services Snapshot) -->
+            <section class="bg-indigo-50 py-12 sm:py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-center text-gray-800 mb-10">Our Core Value Pillars</h3>
+                    <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+
+                        <div class="card-hover-effect bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-primary-blue">
+                            <i class="fas fa-lightbulb text-4xl text-primary-blue mb-4"></i>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-3">Tech Consultation</h4>
+                            <p class="text-gray-600">Strategic guidance to align your technology roadmap with core business goals, ensuring maximum ROI and efficiency.</p>
+                        </div>
+
+                        <div class="card-hover-effect bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-primary-blue">
+                            <i class="fas fa-code text-4xl text-primary-blue mb-4"></i>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-3">App & Web Development</h4>
+                            <p class="text-gray-600">Building scalable, high-performance web and mobile applications using modern stacks like React, Java, and .NET.</p>
+                        </div>
+
+                        <div class="card-hover-effect bg-white p-6 rounded-xl shadow-lg text-center border-t-4 border-primary-blue">
+                            <i class="fas fa-shield-alt text-4xl text-primary-blue mb-4"></i>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-3">Cybersecurity</h4>
+                            <p class="text-gray-600">Enterprise-grade protection against threats, ensuring regulatory compliance for financial, health, and education sectors.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Trusted By Section -->
+            <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+                <h3 class="text-2xl font-bold text-center text-gray-800 mb-8">Trusted By Industry Leaders</h3>
+                <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-6 opacity-75">
+                    <!-- Placeholder Logos - adjust sizes for responsiveness -->
+                    <img class="h-8 sm:h-10 opacity-70 hover:opacity-100 transition duration-300" src="https://placehold.co/120x40/f8fafc/1e40af?text=FINANCE+Bank" alt="Financial Client">
+                    <img class="h-8 sm:h-10 opacity-70 hover:opacity-100 transition duration-300" src="https://placehold.co/120x40/f8fafc/1e40af?text=HEALTH+Corp" alt="Healthcare Client">
+                    <img class="h-8 sm:h-10 opacity-70 hover:opacity-100 transition duration-300" src="https://placehold.co/120x40/f8fafc/1e40af?text=INSURE+Group" alt="Insurance Client">
+                    <img class="h-8 sm:h-10 opacity-70 hover:opacity-100 transition duration-300" src="https://placehold.co/120x40/f8fafc/1e40af?text=EDU+Alliance" alt="Education Client">
+                    <img class="h-8 sm:h-10 opacity-70 hover:opacity-100 transition duration-300" src="https://placehold.co/120x40/f8fafc/1e40af?text=TECH+Venture" alt="Tech Client">
+                </div>
+            </section>
+        `;
+
+        const aboutContent = () => `
+            ${pageHeader("About Innov8-360", "Our Vision, Mission, and Commitment to Excellence")}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-12 sm:space-y-16">
+                
+                <!-- Company Overview -->
+                <div class="bg-white p-6 sm:p-10 rounded-xl shadow-lg border-l-8 border-light-blue">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-4">Driven by Digital Trust</h3>
+                    <p class="text-gray-600 leading-relaxed text-lg">Founded in 2018 by a team of industry veterans, Innov8-360 was created with the core principle that technology must be both **innovative and impenetrable**. Our focus on highly regulated sectors like banking and healthcare means we build with security and compliance embedded from day one. We don't just solve technical problems; we craft strategic advantages that ensure your long-term digital stability.</p>
+                </div>
+                
+                <!-- Mission & Vision & Values Grid -->
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-2xl font-bold text-primary-blue mb-3 flex items-center"><i class="fas fa-crosshairs mr-3"></i> Mission</h4>
+                        <p class="text-gray-600 leading-relaxed">To be the indispensable technology partner for global enterprises, delivering comprehensive, secure, and scalable solutions that drive measurable business growth and digital transformation.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-primary-blue mb-3 flex items-center"><i class="fas fa-eye mr-3"></i> Vision</h4>
+                        <p class="text-gray-600 leading-relaxed">To create a future where every organization is empowered by seamless, intelligent, and impenetrable technology, setting new standards for innovation and digital trust in the 21st century.</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold text-primary-blue mb-3 flex items-center"><i class="fas fa-hand-holding-heart mr-3"></i> Values</h4>
+                        <p class="text-gray-600 leading-relaxed">Integrity, Security-First Mindset, Continuous Innovation, and Radical Collaboration define every step we take with our clients.</p>
+                    </div>
+                </div>
+
+                <!-- Simple Company Timeline/History -->
+                <div class="pt-8 border-t border-indigo-200">
+                    <h3 class="text-3xl font-bold text-gray-800 text-center mb-8">Our Journey to 360-Degree Excellence</h3>
+                    <div class="relative max-w-4xl mx-auto">
+                        <!-- Timeline Line -->
+                        <div class="hidden md:block absolute h-full border-l-4 border-light-blue left-1/2 transform -translate-x-1/2"></div>
+                        
+                        ${timelineItem("2018", "Founding & Focus", "Innov8-360 is established with initial focus on enterprise-grade application modernization and dedicated cybersecurity audits.", "left")}
+                        ${timelineItem("2020", "Scaling Operations", "Secured major contracts in the North American financial sector, driving expansion of the dedicated compliance and legal team.", "right")}
+                        ${timelineItem("2022", "Platform Launch", "Developed and launched proprietary DevSecOps frameworks, significantly speeding up secure development cycles for clients.", "left")}
+                        ${timelineItem("2024", "Global Reach", "Expanded service offerings into cloud consultation (AWS/Azure) and secured partnerships in the European healthcare market.", "right")}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        /**
+         * Renders a single timeline item with fixes for date alignment.
+         * The flex order utilities (order-1, order-3) are used to swap the position of the date/card dynamically.
+         */
+        const timelineItem = (year, title, description, alignment) => `
+            <div class="mb-8 flex items-center w-full">
+                <!-- Content Box (Always on the left for mobile, swapped for desktop) -->
+                <div class="w-11/12 md:w-5/12 p-4 bg-white rounded-xl shadow-lg card-hover-effect border-t-4 border-primary-blue 
+                    ${alignment === 'left' ? 'order-1 md:order-1' : 'order-1 md:order-3'}">
+                    <!-- Date for Mobile -->
+                    <p class="block md:hidden text-primary-blue font-bold text-lg mb-1">${year}</p>
+                    <h4 class="text-lg font-semibold text-gray-900">${title}</h4>
+                    <p class="text-sm text-gray-600">${description}</p>
+                </div>
+                <!-- Dot Column (Always in the center) -->
+                <div class="w-1/12 flex justify-center relative order-2">
+                    <div class="w-4 h-4 bg-light-blue rounded-full absolute top-1/2 transform -translate-y-1/2"></div>
+                </div>
+                <!-- Date Column (Hidden on mobile, swapped for desktop) -->
+                <div class="hidden md:block w-5/12 p-4 order-3 md:order-3 
+                    ${alignment === 'left' ? 'text-left pl-6' : 'text-right pr-6'}">
+                    <p class="text-primary-blue font-bold text-xl">${year}</p>
+                </div>
+            </div>
+        `;
+
+
+        const servicesContent = () => `
+            ${pageHeader("Our Technology Services", "Comprehensive solutions to empower your business in the digital age.")}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-16">
+                
+                ${detailedServiceSection("Tech Consultation & Strategy", "fas fa-chart-line", 
+                    "We provide the strategic clarity required to navigate complex digital transformation journeys. Our consulting services align IT investments directly with business outcomes, ensuring a roadmap for scalable and secure growth.", 
+                    [
+                        { title: "Digital Roadmapping", description: "Creating a multi-year plan for IT infrastructure, application modernization, and cloud adoption." },
+                        { title: "Architecture Review", description: "Assessing existing systems for bottlenecks, security gaps, and performance improvements." },
+                        { title: "Compliance Strategy", description: "Guidance on regulatory adherence (GDPR, HIPAA, SOC 2) for complex industries." }
+                    ],
+                    "bg-indigo-50"
+                )}
+
+                ${detailedServiceSection("Website & Application Development", "fas fa-code", 
+                    "From high-throughput trading platforms to intuitive internal management tools, our developers build scalable, robust, and user-centric applications using a modern, multi-stack approach.", 
+                    [
+                        { title: "Full-Stack Development", description: "Expertise in JS frameworks (React, Angular) combined with robust backend systems (.NET, Java)." },
+                        { title: "Legacy System Modernization", description: "Migrating outdated systems to modern, maintainable microservices architectures." },
+                        { title: "Mobile & Cross-Platform", description: "Native and hybrid mobile app development (iOS/Android) for enterprise use." }
+                    ],
+                    "bg-white"
+                )}
+
+                ${detailedServiceSection("Enterprise Cybersecurity", "fas fa-shield-alt", 
+                    "Security is our foundation. We protect your critical assets with proactive monitoring, comprehensive auditing, and rapid incident response, specializing in high-risk financial and healthcare environments.", 
+                    [
+                        { title: "Penetration Testing (Pen Test)", description: "Simulating real-world attacks to identify and remediate vulnerabilities before they are exploited." },
+                        { title: "24/7 Threat Monitoring", description: "Managed Security Services (MSS) providing continuous detection and proactive defense against advanced persistent threats (APTs)." },
+                        { title: "Security Awareness Training", description: "Educating your team to be the first line of defense against phishing and social engineering attacks." }
+                    ],
+                    "bg-indigo-50"
+                )}
+            </div>
+        `;
+
+        const detailedServiceSection = (title, icon, summary, features, bgColor) => `
+            <div class="${bgColor} p-6 sm:p-10 rounded-xl shadow-xl card-hover-effect">
+                <div class="flex items-center mb-6">
+                    <i class="${icon} text-4xl text-primary-blue mr-4"></i>
+                    <h3 class="text-3xl font-bold text-gray-900">${title}</h3>
+                </div>
+                <p class="text-lg text-gray-700 mb-8">${summary}</p>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    ${features.map(f => `
+                        <div class="p-4 border-l-4 border-light-blue bg-white shadow-md rounded-lg">
+                            <h4 class="font-semibold text-primary-blue mb-1">${f.title}</h4>
+                            <p class="text-sm text-gray-600">${f.description}</p>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+
+
+        const stacksContent = () => `
+            ${pageHeader("Our Technology Stacks", "Building robust, scalable, and future-proof applications with modern tools.")}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-12">
+                
+                <div class="text-center max-w-4xl mx-auto">
+                    <p class="text-xl text-gray-600 mb-8">We select the **best tools for the job**, combining reliable enterprise frameworks with the flexibility of modern open-source technology. Our stack decisions are always driven by **security, performance, and maintainability**.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    ${stackCard("Frontend Development", "fas fa-display", ["React (Primary)", "Vue.js / Angular", "JavaScript (ES6+)", "Tailwind CSS"], "text-blue-600", "For dynamic, lightning-fast user interfaces.")}
+                    ${stackCard("Backend & Logic", "fas fa-server", ["Java / Spring Boot", ".NET (Core/Framework)", "Node.js (Express)", "Python"], "text-red-600", "For scalable, secure, and reliable business logic.")}
+                    ${stackCard("Databases & Data", "fas fa-database", ["MySQL / PostgreSQL", "MSSQL (SQL Server)", "MongoDB (NoSQL)", "Redis (Caching)"], "text-green-600", "Optimizing data storage for both transactional speed and massive scale.")}
+                    ${stackCard("Cloud & DevOps", "fas fa-cloud", ["AWS / Azure / GCP", "Kubernetes / Docker", "CI/CD Pipelines", "Terraform / Ansible"], "text-yellow-600", "Automating deployment and ensuring high availability across all environments.")}
+                    ${stackCard("Mobile Development", "fas fa-mobile-screen-button", ["React Native", "Flutter", "Native iOS (Swift)", "Native Android (Kotlin)"], "text-purple-600", "Delivering seamless mobile experiences across all major platforms.")}
+                    ${stackCard("Security Architecture", "fas fa-lock", ["OWASP Top 10", "Encryption Standards", "IAM Solutions", "API Gateway Security"], "text-gray-600", "Integrating security checkpoints into every phase of the development lifecycle.")}
+                </div>
+            </div>
+        `;
+
+        const stackCard = (title, icon, items, colorClass, rationale) => `
+            <div class="p-6 bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition duration-300">
+                <i class="${icon} text-4xl ${colorClass} mb-4"></i>
+                <h4 class="text-xl font-semibold text-gray-900 mb-2">${title}</h4>
+                <p class="text-sm text-gray-500 mb-4 italic">${rationale}</p>
+                <ul class="space-y-2 text-gray-700 text-sm">
+                    ${items.map(item => `<li class="flex items-center"><i class="fas fa-chevron-right text-xs text-primary-blue mr-3"></i> ${item}</li>`).join('')}
+                </ul>
+            </div>
+        `;
+
+
+        const teamContent = () => `
+            ${pageHeader("Our Leadership & Professionals", "Meet the minds steering Innov8-360's vision and technical delivery.")}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 space-y-16">
+                
+                <h3 class="text-3xl font-bold text-gray-800 text-center mb-8">Executive Leadership</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    ${teamMemberCard("Aisha Hassan", "CEO & Managing Director", "Aisha drives our strategic direction, focusing on market expansion and fostering a culture of client-first innovation.", "https://placehold.co/150x150/1e40af/ffffff?text=CEO")}
+                    ${teamMemberCard("Dr. Kenji Tanaka", "CTO & Executive Director", "Dr. Tanaka is a renowned architect in microservices and security, overseeing all technical deliveries and R&D.", "https://placehold.co/150x150/3b82f6/ffffff?text=CTO")}
+                    ${teamMemberCard("Sarah Chen, Esq.", "Legal Representative & Compliance Officer", "Sarah ensures all operations meet stringent global regulatory standards for data privacy and corporate governance.", "https://placehold.co/150x150/1e40af/ffffff?text=Legal")}
+                    ${teamMemberCard("Omar Khan", "Head of Consulting Services", "Omar leads our strategic consulting practice, helping major clients redefine their digital transformation journey.", "https://placehold.co/150x150/3b82f6/ffffff?text=HOC")}
+                </div>
+
+                <h3 class="text-3xl font-bold text-gray-800 text-center mb-8 pt-12 border-t border-indigo-200">Key Technical & Operational Leads</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                    ${teamMemberCard("Priya Sharma", "Lead Java Architect", "Manages the development of high-performance backend systems for financial clients.", "https://placehold.co/150x150/1e40af/ffffff?text=Dev+Lead")}
+                    ${teamMemberCard("David Lee", "Cyber Defense Manager", "Specializes in vulnerability assessments, penetration testing, and incident response.", "https://placehold.co/150x150/3b82f6/ffffff?text=Security")}
+                    ${teamMemberCard("Elena Rodriguez", "UX/UI Design Director", "Ensures all applications are built with world-class usability and accessibility standards.", "https://placehold.co/150x150/1e40af/ffffff?text=Design")}
+                </div>
+
+                <!-- Leadership Philosophy -->
+                <div class="pt-12 border-t mt-12 bg-indigo-50 p-8 rounded-xl shadow-inner">
+                    <h3 class="text-3xl font-bold text-gray-800 text-center mb-4">Our Leadership Philosophy</h3>
+                    <p class="text-center text-lg text-gray-600 max-w-3xl mx-auto">
+                        We operate on a flat, collaborative structure where expertise leads, not titles. Our professionals are empowered to take ownership, challenge assumptions, and deliver solutions that truly move the needle for our partners.
+                    </p>
+                </div>
+            </div>
+        `;
+
+        const teamMemberCard = (name, title, bio, imageUrl) => `
+            <div class="bg-white p-6 rounded-xl shadow-xl text-center border-t-4 border-light-blue card-hover-effect">
+                <img class="w-28 h-28 rounded-full mx-auto mb-4 object-cover border-4 border-indigo-200" src="${imageUrl}" alt="${name}" onerror="this.onerror=null; this.src='https://placehold.co/150x150/1e40af/ffffff?text=User';">
+                <h4 class="text-xl font-bold text-gray-900">${name}</h4>
+                <p class="text-primary-blue font-semibold mb-3 text-sm">${title}</p>
+                <p class="text-sm text-gray-600">${bio}</p>
+            </div>
+        `;
+
+
+        const contactContent = () => `
+            ${pageHeader("Connect With Our Team", "Let's discuss how Innov8-360 can elevate your business.")}
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 grid lg:grid-cols-2 gap-12">
+                
+                <!-- Contact Information -->
+                <div class="space-y-6">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-6">Contact Information</h3>
+                    
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center p-4 bg-white rounded-xl shadow-md border-l-4 border-primary-blue">
+                        <i class="fas fa-map-marker-alt text-2xl text-primary-blue mr-4 mb-2 sm:mb-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Corporate Headquarters</p>
+                            <p class="text-gray-600">100 Innov8 Tower, Digital City, TX 78701, USA</p>
+                            <a href="https://maps.app.goo.gl/YourPlaceholderLocation" target="_blank" class="text-light-blue hover:underline text-sm font-medium">View on Map</a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center p-4 bg-white rounded-xl shadow-md border-l-4 border-primary-blue">
+                        <i class="fas fa-clock text-2xl text-primary-blue mr-4 mb-2 sm:mb-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Office Hours</p>
+                            <p class="text-gray-600">Monday - Friday: 8:00 AM - 6:00 PM (CST)</p>
+                            <p class="text-gray-600">24/7 Support for Managed Services Clients</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center p-4 bg-white rounded-xl shadow-md border-l-4 border-primary-blue">
+                        <i class="fas fa-envelope text-2xl text-primary-blue mr-4 mb-2 sm:mb-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Email Us</p>
+                            <p class="text-gray-600">solutions@innov8-360.com</p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center p-4 bg-white rounded-xl shadow-md border-l-4 border-primary-blue">
+                        <i class="fas fa-phone-alt text-2xl text-primary-blue mr-4 mb-2 sm:mb-0"></i>
+                        <div>
+                            <p class="font-semibold text-gray-900">Call Us</p>
+                            <p class="text-gray-600">+1 (555) 360-8888</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border-t-8 border-primary-blue">
+                    <h3 class="text-3xl font-bold text-gray-800 mb-6">Send Us a Message</h3>
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                        <div class="mb-4">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-primary-blue transition duration-200" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Work Email</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-primary-blue transition duration-200" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="service" class="block text-gray-700 font-medium mb-2">I am interested in...</label>
+                            <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-primary-blue transition duration-200">
+                                <option value="Tech Consultation">Tech Consultation</option>
+                                <option value="Website/App Development">Website/App Development</option>
+                                <option value="Cybersecurity Services">Cybersecurity Services</option>
+                                <option value="General Inquiry">General Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-primary-blue transition duration-200" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-primary-blue text-white font-semibold rounded-lg shadow-md hover:bg-light-blue transition duration-300 transform hover:scale-[1.01]">
+                            Submit Inquiry
+                        </button>
+                    </form>
+
+                    <!-- Submission Confirmation Message (Now used to inform about mailto: action) -->
+                    <div id="contact-message" class="hidden mt-4 p-4 border rounded-lg" role="alert">
+                        <!-- Content populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Map of page names to their content generation functions
+        const pages = {
+            'home': homeContent,
+            'about': aboutContent,
+            'services': servicesContent,
+            'stacks': stacksContent,
+            'team': teamContent,
+            'contact': contactContent,
+        };
+
+
+        // --- JavaScript Logic ---
+
+        /**
+         * Renders the requested page content into the main 'content' div.
+         * @param {string} pageName - The key from the 'pages' object.
+         */
+        const renderPage = (pageName) => {
+            const contentDiv = document.getElementById('content');
+            const pageGenerator = pages[pageName];
+
+            if (pageGenerator) {
+                contentDiv.innerHTML = pageGenerator();
+                // Update URL hash without causing a full page reload
+                window.history.pushState(null, null, `#${pageName}`);
+                window.scrollTo(0, 0); // Scroll to top on page switch
+            } else {
+                contentDiv.innerHTML = `<div class="p-16 text-center text-red-600">404 | Page Not Found</div>`;
+            }
+        };
+
+        /**
+         * Handles mobile menu toggle.
+         */
+        const toggleMobileMenu = () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        };
+
+        /**
+         * UPDATED: Constructs a mailto: link with form data and attempts to open
+         * the user's default email client, addressing the email to the specified recipient.
+         * @param {Event} event - The form submission event.
+         */
+        const handleFormSubmit = (event) => {
+            event.preventDefault(); // Stop the default form submission
+
+            const recipient = "johnndukwe820@gmail.com";
+            const form = document.getElementById('contactForm');
+            const formData = new FormData(form);
+
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const service = formData.get('service');
+            const message = formData.get('message');
+
+            // Construct the clean email body
+            const body = `
+Inquiry Details:
+
+Name: ${name}
+Client Email: ${email}
+Service Interest: ${service}
+
+--- Message ---
+${message}
+            `.trim();
+
+            // Construct the mailto link using encodeURIComponent for safety
+            const subject = encodeURIComponent(`Innov8-360 Inquiry from ${name}`);
+            const encodedBody = encodeURIComponent(body);
+
+            const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${encodedBody}`;
+
+            const messageBox = document.getElementById('contact-message');
+
+            // 1. Show the user a clear message about what's happening
+            messageBox.classList.remove('hidden', 'bg-green-100', 'border-green-400', 'text-green-700');
+            messageBox.classList.add('bg-yellow-100', 'border-yellow-400', 'text-yellow-700');
+            messageBox.innerHTML = '<strong>Opening Email Client...</strong> Please ensure you click "Send" in your email program to finalize the inquiry.';
+
+            // 2. Open the mailto link
+            window.location.href = mailtoLink;
+
+            // 3. Reset the form and hide the message box after a delay
+            setTimeout(() => {
+                form.reset();
+                messageBox.classList.add('hidden');
+            }, 5000); // 5 seconds delay
+        };
+        
+        // --- Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Setup mobile menu listener
+            document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+            // Determine initial page from URL hash or default to 'home'
+            let initialPage = 'home';
+            if (window.location.hash) {
+                const hash = window.location.hash.substring(1).toLowerCase();
+                if (pages[hash]) {
+                    initialPage = hash;
+                }
+            }
+            renderPage(initialPage);
+        });
+
+        // Handle browser back/forward buttons
+        window.addEventListener('hashchange', () => {
+            const hash = window.location.hash.substring(1).toLowerCase();
+            renderPage(hash || 'home');
+        });
+
+    </script>
+</body>
+</html>
